@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      #box {
+        width: 1200px;
+        margin: 0 auto;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        /* overflow: hidden; */
+      }
+      li:first-of-type {
+        margin: 0;
+      }
+      li {
+        list-style: none;
+        width: 200px;
+        height: 300px;
+        border: 1px solid #ccc;
+        float: left;
+        margin-left: 40px;
+      }
+      img {
+        width: 200px;
+      }
+      li span:first-of-type {
+        width: 50px;
+        height: 20px;
+        background-color: rgb(226, 78, 188);
+        border-radius: 10px;
+        color: aliceblue;
+        font-size: 13px;
+        display: inline-block;
+        text-align: center;
+        line-height: 20px;
+      }
+      h4 {
+        display: inline-block;
+      }
+      li span:nth-of-type(2) {
+        font-size: 10px;
+        color: #ccc;
+      }
+      li span:nth-of-type(3) {
+        font-size: 10px;
+        color: #ccc;
+      }
+      p {
+        font-size: 10px;
+        color: #ccc;
+        margin-top: 10px;
+      }
+      #list {
+        width: 100%;
+      }
+      #tab {
+        width: 100%;
+        height: 50px;
+        line-height: 30px;
+        margin-top: 20px;
+        border-bottom: 1px solid #ccc;
+        overflow: hidden;
+      }
+      #tab span {
+        color: palevioletred;
+        border-bottom: 4px solid palevioletred;
+        padding-bottom: 22px;
+      }
+      #address {
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        margin-top: 10px;
+      }
+      #address span:first-of-type {
+        border-right: 1px solid #ccc;
+        padding-right: 15px;
+        font-size: 21px;
+      }
+      #address span:nth-of-type(2) {
+        color: #ccc;
+        margin-left: 10px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      th {
+        height: 50px;
+        background-color: rgb(249, 249, 249);
+        border: none;
+      }
+      th:first-of-type {
+        width: 500px;
+      }
+      td:first-of-type {
+        width: 500px;
+        text-align: left;
+      }
+      td {
+        border: none;
+        margin-bottom: 20px;
+      }
+      td img {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+      }
+      td p {
+        /* display: inline-block; */
+        margin-left: 50px;
+        /* margin-bottom: 74px; */
+        float: right;
+      }
+      td input {
+        float: left;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 30px;
+      }
+      #footer {
+        width: 100%;
+        border: 1px solid #ccc;
+        margin-top: 30px;
+        overflow: hidden;
+      }
+      #sel {
+        width: 120px;
+        height: 30px;
+        margin-top: 20px;
+        margin-left: 20px;
+        border: 1px solid rgb(216, 28, 103);
+        color: rgb(216, 28, 103);
+        text-align: center;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      #se-box {
+        float: left;
+      }
+      #mon {
+        float: right;
+        width: 300px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+      #mon span {
+        color: rgb(216, 28, 103);
+      }
+      #mon p {
+        font-size: 16px;
+      }
+      #mon b {
+        color: black;
+      }
+      #jiesuan {
+        width: 100%;
+        height: 50px;
+        background-color: rgb(243, 243, 243);
+        margin-top: 50px;
+        /* line-height: 80px; */
+        overflow: hidden;
+      }
+      #one {
+        width: 100%;
+      }
+      #settlement {
+        float: right;
+        overflow: hidden;
+      }
+      #settlement span {
+        color: #ccc;
+      }
+      #settlement button {
+        width: 200px;
+        height: 50px;
+        color: aliceblue;
+        background-color: rgb(216, 28, 103);
+        border: none;
+        font-size: 16px;
+      }
+      tbody tr:nth-of-type(3) {
+        border: 1px solid #ccc;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- <script src="./vue copy.js"></script> -->
+    <div id="box">
+      <div id="list">
+        <ul>
+          <li v-for="(item,index) in shoplist">
+            <img :src="item.imgUrl" alt="" @click="addFun(item)" />
+            <br />
+            <span>{{item.special}}</span>
+            <h4>{{item.money}}</h4>
+            <span><del>{{item.original}}</del></span>
+            <span>{{item.discounts}}</span>
+            <p>{{item.title}}</p>
+          </li>
+        </ul>
+      </div>
+      <div id="tab">
+        <span>特卖商品&emsp;<b>19:18</b></span>
+      </div>
+      <div id="address">
+        <span>配送至&nbsp;<b>广州市</b></span>
+        <span>勾选商品"√"即可锁定库存20分钟，倒计时内不用担心商品被抢走~</span>
+      </div>
+      <table border="1px">
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody v-for="(item,index) in newshop">
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                @click="setStatus(index)"
+                checked="item.status"
+              />
+              <img :src="item.imgUrl" alt="" />
+              <p>{{item.title}}</p>
+            </td>
+            <td>{{item.money}}</td>
+            <td>
+              <button style="width: 20px" @click="jia(index)">+</button
+              ><span>{{item.num}}</span
+              ><button style="width: 20px" @click="jian(index)">-</button>
+            </td>
+            <td>
+              <button
+                style="width: 100px; height: 50px; border: none; color: black"
+                @click="delFun(index)"
+              >
+                删除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="footer">
+        <div id="one">
+          <div id="se-box">
+            <select name="" id="sel">
+              <option value="">使用优惠券</option>
+            </select>
+          </div>
+          <div id="mon">
+            <p>
+              共<span v-text="number"></span>件商品
+              商品金额&emsp;&emsp;&emsp;&emsp;
+              <b v-text="count"></b>
+            </p>
+            <p>
+              总金额(未含运费)&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span
+                v-text="count"
+              ></span>
+            </p>
+          </div>
+        </div>
+
+        <div id="jiesuan">
+          <div id="settlement">
+            <span>请在倒计时结束前结算</span>
+            <button @click="jiesuan">立即结算&emsp;<b>19:18</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      Vue.config.productionTip = false;
+      new Vue({
+        el: "#box",
+        data() {
+          return {
+            number: 0,
+            count: 0,
+            newimg: "",
+            newtitle: "",
+            newprice: "",
+            num: 1,
+            shoplist: [
+              {
+                imgUrl:
+                  "https://gw.alicdn.com/imgextra/i3/2207222472824/O1CN01yKFZnZ1WjROvGflIl_!!0-item_pic.jpg_110x10000Q75.jpg_.webp",
+                id: 1,
+                special: "特价卖",
+                money: "314",
+                original: "￥600",
+                discounts: "2.9折",
+                title: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两..",
+                status: true,
+              },
+              {
+                imgUrl:
+                  "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fimgextra%2Fi1%2FTB1JQB_OVXXXXXAXXXXXXXXXXXX_%21%210-item_pic.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1705835785&t=e21adc56924e57cbef2d81f50698f484",
+                id: 2,
+                special: "特价卖",
+                money: "600",
+                original: "￥1200",
+                discounts: "2.9折",
+                title: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两..",
+                status: true,
+              },
+              {
+                imgUrl:
+                  "https://gw.alicdn.com/imgextra/i3/2207222472824/O1CN01yKFZnZ1WjROvGflIl_!!0-item_pic.jpg_110x10000Q75.jpg_.webp",
+                id: 3,
+                special: "特价卖",
+                money: "500",
+                original: "￥600",
+                discounts: "2.9折",
+                title: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两..",
+                status: true,
+              },
+              {
+                imgUrl:
+                  "https://gw.alicdn.com/imgextra/i3/2207222472824/O1CN01yKFZnZ1WjROvGflIl_!!0-item_pic.jpg_110x10000Q75.jpg_.webp",
+                id: 4,
+                special: "特价卖",
+                money: "14",
+                original: "￥600",
+                discounts: "2.9折",
+                title: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两..",
+                status: true,
+              },
+              {
+                imgUrl:
+                  "https://gw.alicdn.com/imgextra/i3/2207222472824/O1CN01yKFZnZ1WjROvGflIl_!!0-item_pic.jpg_110x10000Q75.jpg_.webp",
+                id: 5,
+                special: "特价卖",
+                money: "54",
+                original: "￥600",
+                discounts: "2.9折",
+                title: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两..",
+                status: true,
+              },
+            ],
+            newshop: [],
+          };
+        },
+        methods: {
+          addFun(item) {
+            this.newshop.push({
+              id: item.id,
+              imgUrl: item.imgUrl,
+              title: item.title,
+              money: item.money,
+              num: 1,
+              status: item.status,
+              numb: 0,
+            });
+            this.countFun();
+            this.numberFun();
+          },
+          delFun(index) {
+            this.newshop.splice(index, 1);
+            this.countFun();
+            this.numberFun();
+          },
+          jia(index) {
+            this.newshop[index].num++;
+            if (this.newshop[0].status) {
+              this.countFun();
+              this.numberFun();
+            }
+          },
+          jian(index) {
+            if (this.newshop[index].num == 1) {
+              return alert("数量不足");
+            }
+            this.newshop[index].num--;
+            if (this.newshop[0].status) {
+              this.countFun();
+              this.numberFun();
+            }
+          },
+          countFun() {
+            this.count = this.newshop.reduce((a, item) => {
+              console.log(a, item.money);
+              return a + item.money * item.num;
+            }, 0);
+          },
+          setStatus(index) {
+            this.newshop[index].status = !this.newshop[index].status;
+            if (!this.newshop[index].status) {
+              this.count = this.count - this.newshop[index].money;
+            } else {
+              this.count = this.count + this.newshop[index].money;
+            }
+            this.numberFun();
+          },
+          jiesuan() {
+            this.newshop = [];
+            alert(`你已结算${this.count}元`);
+            this.count = 0;
+            this.numberFun();
+          },
+          numberFun() {
+            this.number = this.newshop.length;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
